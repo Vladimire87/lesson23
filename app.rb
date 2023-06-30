@@ -26,6 +26,22 @@ post "/appointment" do
 	@barber = params[:barber]
 	@color = params[:color]
 
+	hh = { 
+		:username => "Введите Имя",
+		:tel => "Введите Телефон",
+		:date => "Введите Дату",
+		:barber => "Выберите Барбера",
+		:color => "Выберите цвет "
+	}
+
+	hh.each do |key, value|
+
+		if params[key] == ''
+			@error = hh[key]
+			return erb :appointment
+		end
+	end
+
 	f = File.open "./public/users.txt", "a"
 	f.write "Username: #{@username}, Phone: #{@tel}, Date: #{@date}, Barber: #{@barber}, Color: #{@color}\n"
 	f.close
