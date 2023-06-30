@@ -2,23 +2,23 @@
 <form action="/appointment" method="post">
   <div class="form-group">
     <label for="username">Ваше Имя:</label>
-    <input type="text"  name="username" class="form-control" placeholder="Ваше Имя" required>
+    <input type="text"  name="username" class="form-control" placeholder="Ваше Имя" value="<%= @username %>">
   </div>
 
   <div class="form-group">
     <label for="tel">Ваш Телефон:</label>
-    <input type="tel"  name="tel" class="form-control" placeholder="Телефон" required>
+    <input type="tel"  name="tel" class="form-control" placeholder="Телефон" value="<%= @tel %>">
   </div>
 
   <div class="form-group">
     <label for="date">Дата:</label>
-    <input type="datetime-local"  name="date" class="form-control" required>
+    <input type="datetime-local"  name="date" class="form-control" value="<%= @date %>">
   </div>
 
   <div class="form-group">
     <label for="pet-select">Выберите Барбера:</label>
 
-    <select id="aaa" name="barber" class="form-control" required>
+    <select id="aaa" name="barber" class="form-control" >
         <option value="">--Please choose an option--</option>
         <option value="Walter White">Walter White</option>
         <option value="Jessie Pinkman">Jessie Pinkman</option>
