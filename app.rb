@@ -24,11 +24,12 @@ post "/appointment" do
 	@tel = params[:tel]
 	@date = params[:date]
 	@barber = params[:barber]
+	@color = params[:color]
 
 	f = File.open "./public/users.txt", "a"
-	f.write "Username: #{@username}, Phone: #{@tel}, Date: #{@date}, Barber: #{@barber}\n"
+	f.write "Username: #{@username}, Phone: #{@tel}, Date: #{@date}, Barber: #{@barber}, Color: #{@color}\n"
 	f.close
-	erb "Спасибо за запись"
+	erb "Спасибо за запись!\nUsername: #{@username}, Phone: #{@tel}, Date: #{@date}, Barber: #{@barber}, Color: #{@color}"
 end
 
 post "/contacts" do

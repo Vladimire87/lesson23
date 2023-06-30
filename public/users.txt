@@ -4,3 +4,4 @@ Username: Walter, Phone: 868769709, Date: 2023-07-28T21:00
 Username: Vladimir, Phone: 83789273982, Date: 2023-07-08T15:00, Barber: Walter White
 Username: Tester, Phone: 87786675, Date: 2023-07-07T19:00, Barber: Gus Fring
 Username: Владимир, Phone: 89055877420, Date: 2023-06-29T19:50, Barber: Jessie Pinkman
+Username: Vladimir, Phone: 3399023, Date: 2023-07-01T15:00, Barber: Walter White, Color: #dc2127
