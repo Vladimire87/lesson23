@@ -33,13 +33,11 @@ post "/appointment" do
 		:barber => "Выберите Барбера",
 		:color => "Выберите цвет "
 	}
+	
+	errors_show hh
 
-	hh.each do |key, value|
-
-		if params[key] == ''
-			@error = hh[key]
-			return erb :appointment
-		end
+	if @error != ""
+		return erb :appointment
 	end
 
 	f = File.open "./public/users.txt", "a"
@@ -51,8 +49,24 @@ end
 post "/contacts" do
 	@email = params[:email]
 	@message = params[:message]
+
+	hh = { 
+		:email => "Введите Имейл",
+		:message => "Введите Сообщение"
+	}
+	
+	errors_show hh
+
+	if @error != ""
+		return erb :contacts
+	end
+
 	f = File.open "./public/contacts.txt", "a"
 	f.write "Email: #{@email}, Мessage: #{@message}\n"
 	f.close
 	erb "Ваше сообщение отправленно!"
+end
+
+def errors_show hash
+	@error = hash.select { |key, _| params[key] == ""}.values.join(", ")
 end
