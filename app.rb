@@ -2,6 +2,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
+require 'pony'
 
 get '/' do
 	erb "Best Barber shop app.rb"	
@@ -47,24 +48,43 @@ post "/appointment" do
 end
 
 post "/contacts" do
-	@email = params[:email]
-	@message = params[:message]
+	email = params[:email]
+	message = params[:message]
 
 	hh = { 
 		:email => "Введите Имейл",
 		:message => "Введите Сообщение"
 	}
-	
+
 	errors_show hh
 
 	if @error != ""
 		return erb :contacts
 	end
+	
+	Pony.options = {
+		via: :smtp,
+		via_options: {
+			address: 'smtp.gmail.com',
+			port: '587',
+			enable_starttls_auto: true,
+			user_name: '',
+			password: '',
+			authentication: :plain,
+			domain: 'localhost:4567'
+		}
+	}
 
-	f = File.open "./public/contacts.txt", "a"
-	f.write "Email: #{@email}, Мessage: #{@message}\n"
-	f.close
-	erb "Ваше сообщение отправленно!"
+	Pony.mail(
+		:to => '', 
+		:from => email,
+		:reply_to => email,
+		:sender => email,
+		:subject => 'Test Mail', 
+		:body => message,
+	)
+
+ erb "Email sent successfully!" 
 end
 
 def errors_show hash
